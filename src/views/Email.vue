@@ -3,7 +3,6 @@
     <form class="pa-6">
       <v-text-field
         v-model="name"
-        :error-messages="nameErrors"
         :counter="10"
         label="Name"
         required
@@ -12,7 +11,6 @@
       ></v-text-field>
       <v-text-field
         v-model="email"
-        :error-messages="emailErrors"
         label="E-mail"
         required
         @input="$v.email.$touch()"
@@ -20,7 +18,6 @@
       ></v-text-field>
       <v-textarea
         v-model="message"
-        :error-messages="nameErrors"
         label="Message"
         required
         @input="$v.message.$touch()"
@@ -28,7 +25,7 @@
       ></v-textarea>
 
       <v-btn
-        class="mr-4"
+        class="mr-4 success"
         @click="submit"
       >
         submit

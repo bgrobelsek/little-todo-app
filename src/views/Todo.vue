@@ -55,12 +55,24 @@
               <v-icon color="primary">mdi-delete-circle</v-icon>
             </v-btn>
           </v-list-item-action>
-
           </template>
         </v-list-item>
         <v-divider></v-divider>
       </div>
     </v-list>
+
+    <!-- Alert -->
+    <v-alert 
+      :value="alert"
+      class="ma-5"
+      type="info"
+      dark 
+      shaped
+      border="bottom"
+      transition="scroll-x-transition"
+      >Todo Added!
+    </v-alert>
+
   </div>
 </template>
 
@@ -71,7 +83,17 @@
     data() {
       return {
         newTaskTitle: '',
-        tasks: []
+        tasks: [],
+        alert: false
+      }
+    },
+    watch: {
+      alert() {
+        if (this.alert === true) {
+          setTimeout(() => {
+            this.alert = false;
+          }, 2000);
+        }
       }
     },
     methods: {
@@ -84,6 +106,7 @@
         }
         this.tasks.push(newTask);
         this.newTaskTitle = '';
+        this.alert = true;
       },
       doneTask(id) {
         let task = this.tasks.filter(task => task.id === id)[0]
@@ -95,3 +118,12 @@
     }
   }
 </script>
+
+<style scoped>
+.v-alert {
+  top: auto;
+  bottom: 10px;
+  outline: none;
+  z-index: 100;
+}
+</style>
