@@ -62,17 +62,21 @@
     </v-list>
 
     <!-- Alert -->
-    <v-alert 
-      :value="alert"
-      class="ma-5"
-      type="info"
-      dark 
-      shaped
-      border="bottom"
-      transition="scroll-x-transition"
-      >Todo Added!
-    </v-alert>
+      <v-alert 
+        :value="alert"
+        class="ma-5"
+        type="info"
+        dark 
+        shaped
+        border="bottom"
+        transition="scroll-x-transition"
+        >Todo Added!
+      </v-alert>
 
+    <!-- Propmt -->
+   
+      
+  
   </div>
 </template>
 
@@ -122,8 +126,7 @@
 <style scoped>
 .v-alert {
   top: auto;
-  bottom: 10px;
+  top: 90%;
   outline: none;
-  z-index: 100;
 }
 </style>
