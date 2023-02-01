@@ -60,7 +60,7 @@
         <v-divider></v-divider>
       </div>
     </v-list>
-    
+
     <p 
       class="noTodos"
       v-if="tasks.length === 0"
@@ -68,17 +68,21 @@
       </p>
 
     <!-- Alert -->
-    <v-alert 
-      :value="alert"
-      class="ma-5"
-      type="info"
-      dark 
-      shaped
-      border="bottom"
-      transition="scroll-x-transition"
-      >Todo Added!
-    </v-alert>
+      <v-alert 
+        :value="alert"
+        class="ma-5"
+        type="info"
+        dark 
+        shaped
+        border="bottom"
+        transition="scroll-x-transition"
+        >Todo Added!
+      </v-alert>
 
+    <!-- Propmt -->
+   
+      
+  
   </div>
 </template>
 
