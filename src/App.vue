@@ -6,11 +6,14 @@
       >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6">
+          <v-list-item-title>
             Little todo app
+            <v-icon
+              color="black"
+            >mdi-book-check-outline</v-icon>
           </v-list-item-title>
-          <v-list-item-subtitle>
-            Choo + Choo = Train
+          <v-list-item-subtitle> 
+            Get more done!
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -70,7 +73,6 @@
         >
           <v-icon>mdi-linkedin</v-icon>
       </v-btn>
-
       <!-- Github -->
       <v-btn icon
         href="https://github.com/bgrobelsek"
@@ -78,7 +80,6 @@
         >
           <v-icon>mdi-github</v-icon>
       </v-btn>
-
       <!-- Instagram -->
       <v-btn icon
         href="https://www.instagram.com/bruno.grobelsek/"
@@ -86,7 +87,6 @@
         >
           <v-icon>mdi-instagram</v-icon>
       </v-btn>
-
     </v-app-bar>
 
     <v-main>

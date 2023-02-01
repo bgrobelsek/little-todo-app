@@ -60,6 +60,12 @@
         <v-divider></v-divider>
       </div>
     </v-list>
+    
+    <p 
+      class="noTodos"
+      v-if="tasks.length === 0"
+      >There are no todos, add some!
+      </p>
 
     <!-- Alert -->
     <v-alert 
@@ -120,10 +126,8 @@
 </script>
 
 <style scoped>
-.v-alert {
-  top: auto;
-  bottom: 10px;
-  outline: none;
-  z-index: 100;
+.noTodos {
+  text-align: center;
+  
 }
 </style>
