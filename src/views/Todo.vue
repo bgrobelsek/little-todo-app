@@ -74,12 +74,35 @@
         type="info"
         dark 
         shaped
+        bottom
         border="bottom"
         transition="scroll-x-transition"
         >Todo Added!
       </v-alert>
 
-    <!-- Propmt -->
+    <!-- footer -->
+  <v-footer 
+      padless
+      app 
+      bottom
+      >
+    <v-col
+      class="text-center"
+      cols="20"
+    >
+    <div>
+      Made with
+    </div> 
+        <a href="https://vuejs.org/" target="_blank"> Vue </a> - 
+        <a href="https://vuetifyjs.com/en/" target="_blank"> Vuetify </a> -
+        <a 
+          href="https://firebase.google.com/" 
+          target="_blank"
+          class="firebase"
+          > Firebase </a>
+    </v-col>
+  </v-footer>
+   
    
       
   
@@ -111,7 +134,6 @@
         let newTask = {
           id: Math.random(),
           title: this.newTaskTitle,
-          date: new Date(),
           done: false
         }
         this.tasks.push(newTask);
@@ -131,7 +153,15 @@
 
 <style scoped>
 .noTodos {
-  text-align: center;
-  
+  text-align: center; 
 }
+
+.v-footer a:hover {
+  color: green;
+}
+
+.v-footer a {
+text-decoration: none;
+}
+
 </style>
