@@ -113,9 +113,12 @@
 
   export default {
     name: 'Home',
+    emits: ['add-task', 'done-task', 'delete-task'],
     data() {
       return {
         newTaskTitle: '',
+        id: Math.random(),
+        done: false,
         tasks: [],
         alert: false
       }
@@ -131,22 +134,43 @@
     },
     methods: {
       addTask() {
-        let newTask = {
-          id: Math.random(),
-          title: this.newTaskTitle,
-          done: false
-        }
-        this.tasks.push(newTask);
-        this.newTaskTitle = '';
-        this.alert = true;
+        // let newTask = {
+        //   id: Math.random(),
+        //   title: this.newTaskTitle,
+        //   done: false
+        // }
+        // // this.tasks.push(newTask);
+        // this.newTaskTitle = '';
+        // this.alert = true;
+        // console.log(this.newTaskTitle)
+
+        fetch('https://test-813d2-default-rtdb.europe-west1.firebasedatabase.app/todo.json', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: this.id,
+            title: this.newTaskTitle,
+            done: this.done
+          })
+        })
+        
+        // read results - check Vue HTTP
+        fetch('https://test-813d2-default-rtdb.europe-west1.firebasedatabase.app/todo.json', {
+
+        })
       },
+
       doneTask(id) {
         let task = this.tasks.filter(task => task.id === id)[0]
         task.done = !task.done
       },
       deleteTask(id) {
         this.tasks = this.tasks.filter(task => task.id !== id)
-      }
+      },
+
+
     }
   }
 </script>
