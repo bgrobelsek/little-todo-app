@@ -157,7 +157,7 @@
 }
 
 .v-footer a:hover {
-  color: green;
+  font-weight: bold;
 }
 
 .v-footer a {
