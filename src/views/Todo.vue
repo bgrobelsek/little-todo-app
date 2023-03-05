@@ -59,23 +59,9 @@
     v-if="todos.length === 0"
     >There are no todos, add some!
   </p>
-  
-  <v-alert 
-    :value="alert"
-    class="ma-5"
-    type="info"
-    dark 
-    shaped
-    bottom
-    border="bottom"
-    transition="scroll-x-transition"
-    >Todo Added!
-  </v-alert>
-
-
-      
-      <!-- footer -->
-      <v-footer 
+        
+    <!-- footer -->
+    <v-footer 
       padless
       app 
       bottom
@@ -93,13 +79,10 @@
       href="https://firebase.google.com/" 
       target="_blank"
       class="firebase"
-      > Firebase </a>
-    </v-col>
-  </v-footer>
-  
-  
-  
-  
+    > Firebase </a>
+  </v-col>
+</v-footer>
+
 </div>
 </template>
 
@@ -116,21 +99,7 @@ import {
 } from "firebase/firestore"
 import { db } from '@/firebase'
 
-const alert = false
-
-if (alert === true) {
-  setTimeout(() => {
-    alert = false 
-  }, 2000)
-}
-
-// if (this.alert === true) {
-          // setTimeout(() => {
-            // this.alert = false;
-          // }, 2000);
- 
 const todos = ref([])
-
 const todosCollectionRef = collection(db, 'todos')
 
 onMounted(() => {
@@ -150,7 +119,6 @@ onMounted(() => {
 
 
 const newTodoContent = ref('')
-
 
 const addTodo = async () =>  {
   await addDoc(todosCollectionRef, {
