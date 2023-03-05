@@ -2,12 +2,12 @@
   <div class="home">
     <!-- Add a Todo -->
     <v-text-field
-      v-model="newTaskTitle"
+      v-model="newTodoContent"
       class="pa-3"
       hide-details
       clearable
-      @click:append="addTask"
-      @keyup.enter="addTask"
+      @click:append="addTodo"
+      @keyup.enter="addTodo"
       outlined
       label="Enter a todo"
       append-icon="mdi-plus-circle"
@@ -18,161 +18,158 @@
       flat
     >
       <div 
-        v-for="task in tasks"
-        :key="task.id"
+        v-for="todo in todos"
+        :key="todo.id"
       >
         <v-list-item
-          @click="doneTask(task.id)"
-          :class="{ 'blue lighten-5': task.done }"
+          @click="toggleDone(todo.id)"
+          :class="{ 'blue lighten-5': todo.done }"
           >
           <template v-slot:default>
             <v-list-item-action>
               <v-checkbox
-                :input-value="task.done"
+                :input-value="todo.done"
                 color="primary"
               ></v-checkbox>
             </v-list-item-action>
 
             <v-list-item-content>
               <v-list-item-title
-                :class="{ 'text-decoration-line-through' : task.done }"
-                >{{ task.title }}
+                :class="{ 'text-decoration-line-through' : todo.done }"
+                >{{ todo.content }}
               </v-list-item-title>
             </v-list-item-content>
-
-            <v-list-item-content>
-              <v-list-item-title
-                :class="{ 'text-decoration-line-through' : task.done }"
-                >{{ task.date }}
-              </v-list-item-title>
-            </v-list-item-content>
-
+            
           <v-list-item-action>
             <v-btn 
-              icon
-              @click.stop="deleteTask(task.id)"
-              >
+            icon
+            @click.stop="deleteTodo(todo.id)"
+            >
               <v-icon color="primary">mdi-delete-circle</v-icon>
             </v-btn>
           </v-list-item-action>
-          </template>
+        </template>
         </v-list-item>
         <v-divider></v-divider>
       </div>
     </v-list>
-
+    
     <p 
-      class="noTodos"
-      v-if="tasks.length === 0"
-      >There are no todos, add some!
-      </p>
+    class="noTodos"
+    v-if="todos.length === 0"
+    >There are no todos, add some!
+  </p>
+  
+  <v-alert 
+    :value="alert"
+    class="ma-5"
+    type="info"
+    dark 
+    shaped
+    bottom
+    border="bottom"
+    transition="scroll-x-transition"
+    >Todo Added!
+  </v-alert>
 
-    <!-- Alert -->
-      <v-alert 
-        :value="alert"
-        class="ma-5"
-        type="info"
-        dark 
-        shaped
-        bottom
-        border="bottom"
-        transition="scroll-x-transition"
-        >Todo Added!
-      </v-alert>
 
-    <!-- footer -->
-  <v-footer 
+      
+      <!-- footer -->
+      <v-footer 
       padless
       app 
       bottom
       >
-    <v-col
+      <v-col
       class="text-center"
       cols="20"
-    >
-    <div>
-      Made with
-    </div> 
-        <a href="https://vuejs.org/" target="_blank"> Vue </a> - 
-        <a href="https://vuetifyjs.com/en/" target="_blank"> Vuetify </a> -
-        <a 
-          href="https://firebase.google.com/" 
-          target="_blank"
-          class="firebase"
-          > Firebase </a>
+      >
+      <div>
+        Made with
+      </div> 
+      <a href="https://vuejs.org/" target="_blank"> Vue </a> - 
+      <a href="https://vuetifyjs.com/en/" target="_blank"> Vuetify </a> -
+      <a 
+      href="https://firebase.google.com/" 
+      target="_blank"
+      class="firebase"
+      > Firebase </a>
     </v-col>
   </v-footer>
-   
-   
-      
   
-  </div>
+  
+  
+  
+</div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import { 
+  collection, 
+  onSnapshot, 
+  QuerySnapshot, 
+  addDoc,
+  deleteDoc,
+  doc,
+  updateDoc
+} from "firebase/firestore"
+import { db } from '@/firebase'
 
-  export default {
-    name: 'Home',
-    emits: ['add-task', 'done-task', 'delete-task'],
-    data() {
-      return {
-        newTaskTitle: '',
-        id: Math.random(),
-        done: false,
-        tasks: [],
-        alert: false
+const alert = false
+
+if (alert === true) {
+  setTimeout(() => {
+    alert = false 
+  }, 2000)
+}
+
+// if (this.alert === true) {
+          // setTimeout(() => {
+            // this.alert = false;
+          // }, 2000);
+ 
+const todos = ref([])
+
+const todosCollectionRef = collection(db, 'todos')
+
+onMounted(() => {
+  onSnapshot(collection(db, "todos"), (QuerySnapshot) => {
+    const fbTodos = []
+    QuerySnapshot.forEach((doc) => {
+      const todo = {
+        id: doc.id,
+        content: doc.data().content,
+        done: doc.data().done
       }
-    },
-    watch: {
-      alert() {
-        if (this.alert === true) {
-          setTimeout(() => {
-            this.alert = false;
-          }, 2000);
-        }
-      }
-    },
-    methods: {
-      addTask() {
-        // let newTask = {
-        //   id: Math.random(),
-        //   title: this.newTaskTitle,
-        //   done: false
-        // }
-        // // this.tasks.push(newTask);
-        // this.newTaskTitle = '';
-        // this.alert = true;
-        // console.log(this.newTaskTitle)
-
-        fetch('https://test-813d2-default-rtdb.europe-west1.firebasedatabase.app/todo.json', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: this.id,
-            title: this.newTaskTitle,
-            done: this.done
-          })
-        })
-        
-        // read results - check Vue HTTP
-        fetch('https://test-813d2-default-rtdb.europe-west1.firebasedatabase.app/todo.json', {
-
-        })
-      },
-
-      doneTask(id) {
-        let task = this.tasks.filter(task => task.id === id)[0]
-        task.done = !task.done
-      },
-      deleteTask(id) {
-        this.tasks = this.tasks.filter(task => task.id !== id)
-      },
+      fbTodos.push(todo)
+    })
+    todos.value = fbTodos
+  }) 
+})
 
 
-    }
-  }
+const newTodoContent = ref('')
+
+
+const addTodo = async () =>  {
+  await addDoc(todosCollectionRef, {
+    content: newTodoContent.value,
+    done: false
+  })
+  newTodoContent.value = ''
+}
+
+const deleteTodo = id => {
+  deleteDoc(doc(todosCollectionRef, id))
+}
+
+const toggleDone = id => {
+  const index = todos.value.findIndex(todo => todo.id === id)
+  updateDoc(doc(todosCollectionRef, id), {
+    done: !todos.value[index].done
+  })
+}
 </script>
 
 <style scoped>
@@ -185,7 +182,7 @@
 }
 
 .v-footer a {
-text-decoration: none;
+  text-decoration: none;
 }
 
 </style>
