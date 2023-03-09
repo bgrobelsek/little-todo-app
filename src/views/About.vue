@@ -2,31 +2,20 @@
   <div class="about pa-6">
     <h1>About The Little Todo App</h1>
     <p>
-      Lorem ipsum dolor sit amet, 
-      consectetur adipisicing elit.
-      Velit ex dolorum eveniet perspiciatis! 
-      Quos id nam beatae doloremque esse? 
-      Provident quia debitis sunt amet rerum 
-      ignissimos dolores odio
-      similique explicabo.
+      Hello, my name is Bruno and welcome to my
+      Little-Todo-App!
     </p>
     <p>
-      Lorem ipsum dolor sit amet, 
-      consectetur adipisicing elit.
-      Velit ex dolorum eveniet perspiciatis! 
-      Quos id nam beatae doloremque esse? 
-      Provident quia debitis sunt amet rerum 
-      ignissimos dolores odio
-      similique explicabo.
+      This app is my University project,
+      it's built by using JavaScript, Vue, Vuetify
+      and Firebase.
     </p>
     <p>
-      Lorem ipsum dolor sit amet, 
-      consectetur adipisicing elit.
-      Velit ex dolorum eveniet perspiciatis! 
-      Quos id nam beatae doloremque esse? 
-      Provident quia debitis sunt amet rerum 
-      ignissimos dolores odio
-      similique explicabo.
+      You can add todos, "cross" them when they are done
+      and delete them. I wanted to keep the app nice and
+      simple without overthinking or overdoing it. Todos 
+      are stored in Googles firebase database and are
+      managed in realtime using query snapshots.
     </p>
 
     <!-- footer -->
@@ -54,3 +43,9 @@
 
   </div>
 </template>
+
+<style>
+h1 {
+  padding-bottom: 10px;
+}
+</style>
