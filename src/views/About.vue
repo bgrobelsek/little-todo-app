@@ -48,4 +48,8 @@
 h1 {
   padding-bottom: 10px;
 }
+
+.v-footer a {
+  text-decoration: none;
+}
 </style>
