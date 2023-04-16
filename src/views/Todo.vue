@@ -14,9 +14,11 @@
     ></v-text-field>
 
     <v-list
-      class="pt-0"
+      class="pt-0 mx-auto"
       flat
+      width="500px"
     >
+    <!-- WIDTH ^ nije dobar, moraš ga dotjerati da se ne aplicira kada si na mobitelu-->
       <div 
         v-for="todo in todos"
         :key="todo.id"
@@ -151,6 +153,11 @@ const toggleDone = id => {
 
 .v-footer a {
   text-decoration: none;
+}
+
+.v-list-item {
+  border: 1px solid grey;
+  padding:;
 }
 
 </style>
