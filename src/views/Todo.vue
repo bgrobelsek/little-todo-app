@@ -4,19 +4,21 @@
     <v-text-field
       v-model="newTodoContent"
       class="pa-3"
-      hide-details
+      hide-details="auto"
       clearable
-      @click:append="addTodo"
-      @keyup.enter="addTodo"
       outlined
       label="Enter a todo"
       append-icon="mdi-plus-circle"
+      :rules="rules"
+      @click:append="addTodo"
+      @keyup.enter="addTodo"
     ></v-text-field>
 
     <v-list
       class="pt-0 mx-auto"
       flat
-      width="500px"
+      width="70%"
+      round
     >
     <!-- WIDTH ^ nije dobar, moraš ga dotjerati da se ne aplicira kada si na mobitelu-->
       <div 
@@ -26,6 +28,7 @@
         <v-list-item
           @click="toggleDone(todo.id)"
           :class="{ 'blue lighten-5': todo.done }"
+          class="pa-1 ma-2"
           >
           <template v-slot:default>
             <v-list-item-action>
@@ -60,7 +63,7 @@
     class="noTodos"
     v-if="todos.length === 0"
     >There are no todos, add some!
-  </p>
+    </p>
         
     <!-- footer -->
     <v-footer 
@@ -103,6 +106,10 @@ import { db } from '@/firebase'
 
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
+const rules = [
+  value => !!value || 'Required.',
+  value => (value.length >= 3) || 'Min 3 characters'
+]
 
 onMounted(() => {
   onSnapshot(collection(db, "todos"), (QuerySnapshot) => {
@@ -157,7 +164,13 @@ const toggleDone = id => {
 
 .v-list-item {
   border: 1px solid grey;
-  padding:;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .v-list {
+    width: "auto";
+  }
 }
 
 </style>
