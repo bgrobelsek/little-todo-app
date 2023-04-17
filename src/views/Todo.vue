@@ -4,12 +4,12 @@
     <v-text-field
       v-model="newTodoContent"
       class="pa-3"
-      hide-details="auto"
       clearable
       outlined
       label="Enter a todo"
       append-icon="mdi-plus-circle"
       :rules="rules"
+      hide-details="auto"
       @click:append="addTodo"
       @keyup.enter="addTodo"
     ></v-text-field>
@@ -58,12 +58,14 @@
         <v-divider></v-divider>
       </div>
     </v-list>
+
     
     <p 
     class="noTodos"
     v-if="todos.length === 0"
     >There are no todos, add some!
-    </p>
+  </p>
+
         
     <!-- footer -->
     <v-footer 
@@ -130,11 +132,15 @@ onMounted(() => {
 const newTodoContent = ref('')
 
 const addTodo = async () =>  {
-  await addDoc(todosCollectionRef, {
-    content: newTodoContent.value,
-    done: false
-  })
-  newTodoContent.value = ''
+  if (newTodoContent.value.length > 3) {
+    await addDoc(todosCollectionRef, {
+      content: newTodoContent.value,
+      done: false
+    })
+    newTodoContent.value = ''
+  } else {
+    alert('NE MOŽE BRE')
+  }  
 }
 
 const deleteTodo = id => {
