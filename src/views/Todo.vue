@@ -8,8 +8,8 @@
       outlined
       label="Enter a todo"
       append-icon="mdi-plus-circle"
-      :rules="rules"
       hide-details="auto"
+      :rules="rules"
       @click:append="addTodo"
       @keyup.enter="addTodo"
     ></v-text-field>
@@ -59,13 +59,12 @@
       </div>
     </v-list>
 
-    
+    <!-- message for if there is no todos-->
     <p 
-    class="noTodos"
-    v-if="todos.length === 0"
-    >There are no todos, add some!
-  </p>
-
+      class="noTodos"
+      v-if="todos.length === 0"
+      >There are no todos, add some!
+    </p>
         
     <!-- footer -->
     <v-footer 
@@ -108,10 +107,13 @@ import { db } from '@/firebase'
 
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
+const newTodoContent = ref('')
+
 const rules = [
   value => !!value || 'Required.',
   value => (value.length >= 3) || 'Min 3 characters'
 ]
+
 
 onMounted(() => {
   onSnapshot(collection(db, "todos"), (QuerySnapshot) => {
@@ -129,8 +131,7 @@ onMounted(() => {
 })
 
 
-const newTodoContent = ref('')
-
+// add Todo
 const addTodo = async () =>  {
   if (newTodoContent.value.length > 3) {
     await addDoc(todosCollectionRef, {
@@ -143,10 +144,12 @@ const addTodo = async () =>  {
   }  
 }
 
+// delete Todo
 const deleteTodo = id => {
   deleteDoc(doc(todosCollectionRef, id))
 }
 
+// toggle Done
 const toggleDone = id => {
   const index = todos.value.findIndex(todo => todo.id === id)
   updateDoc(doc(todosCollectionRef, id), {
@@ -175,7 +178,7 @@ const toggleDone = id => {
 
 @media only screen and (max-width: 600px) {
   .v-list {
-    width: "auto";
+    width: "90%";
   }
 }
 
