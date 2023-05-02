@@ -9,7 +9,6 @@
       label="Enter a todo"
       append-icon="mdi-plus-circle"
       hide-details="auto"
-      :rules="rules"
       @click:append="addTodo"
       @keyup.enter="addTodo"
     ></v-text-field>
