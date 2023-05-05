@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Todo from '../views/Todo.vue'
 
 Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/',
