@@ -1,5 +1,7 @@
 <template>
+  
   <div>
+    <!-- email form -->
     <form class="pa-6">
       <v-text-field
         v-model="name"
@@ -29,6 +31,7 @@
       </v-btn>
     </form>
 
+    <!-- modal -->
     <v-dialog
       v-model="dialog"
       width="auto"
@@ -77,6 +80,14 @@
 </template>
 
 <script>
+
+/*
+This script holds the input field values for the email body,
+the boolean value that will trigger the modal to open
+and close and two functions(methods) for sending an
+email and to clear it's input fields.
+*/
+
  export default {
     data() {
       return {
@@ -99,7 +110,6 @@
     }
   }
 </script>
-
 
 <style>
 .v-footer a:hover {

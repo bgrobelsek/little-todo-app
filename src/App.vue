@@ -1,5 +1,7 @@
 <template>
+
   <v-app id="inspire">
+  <!-- navigation drawer -->
     <v-navigation-drawer 
       v-model="drawer"
       app
@@ -18,7 +20,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-divider></v-divider>
+      <v-divider/>
 
       <v-list
         dense
@@ -43,6 +45,7 @@
       </v-list>
     </v-navigation-drawer>
 
+  <!-- app bar -->
    <v-app-bar
       app
       color="#fcb69f"
@@ -86,15 +89,23 @@
   >
   <v-icon>mdi-instagram</v-icon>
 </v-btn>
-</v-app-bar>
+    </v-app-bar>
 
-<v-main>
-  <router-view></router-view>
-</v-main>
-</v-app>
+  <!-- router -->
+    <v-main>
+    <router-view>
+    </router-view>
+  </v-main>
+  
+  </v-app>
 </template>
 
 <script>
+/* 
+This script holds the drawer boolean value  
+and the router for the three components/views.
+*/
+
   export default {
     data: () => ({ 
       drawer: null,
@@ -105,9 +116,6 @@
       ],
     })
   }
+
 </script>
   
-
-<!--
-gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
--->

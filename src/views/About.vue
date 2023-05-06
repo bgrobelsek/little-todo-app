@@ -1,4 +1,6 @@
 <template>
+
+  <!-- the about section -->
   <div class="about pa-6">
     <h1>About The Little Todo App</h1>
     <p>
@@ -54,7 +56,9 @@
   </v-footer>
 
   </div>
+
 </template>
+
 
 <style>
 h1 {
