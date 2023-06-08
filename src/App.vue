@@ -108,7 +108,7 @@ and the router for the three components/views.
 
   export default {
     data: () => ({ 
-      drawer: null,
+      drawer: false,
       items: [
         { title: 'Todo', icon: 'mdi-calendar-check-outline', to: '/' },
         { title: 'About', icon: 'mdi-help-box', to: '/about' }, 

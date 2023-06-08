@@ -10,6 +10,11 @@ const routes = [
     component: Todo
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(( '../views/Login.vue')) 
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import( '../views/About.vue')
