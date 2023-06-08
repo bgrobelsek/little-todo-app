@@ -112,7 +112,8 @@ and the router for the three components/views.
       items: [
         { title: 'Todo', icon: 'mdi-calendar-check-outline', to: '/' },
         { title: 'About', icon: 'mdi-help-box', to: '/about' }, 
-        { title: 'Contact', icon: 'mdi-email', to: '/email'}
+        { title: 'Contact', icon: 'mdi-email', to: '/email'},
+        { title: 'Log Out', icon: 'mdi-logout', to: '/login'}
       ],
     })
   }

@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Todo from '../views/Todo.vue'
+import Login from '../views/Login.vue'
+import About from '../views/About.vue'
+import Email from '../views/Email.vue'
 
 Vue.use(VueRouter)
 const routes = [
@@ -12,17 +15,17 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(( '../views/Login.vue')) 
+    component: Login
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import( '../views/About.vue')
+    component: About
   },
   {
     path: '/email',
     name: 'Email',
-    component: () => import( '../views/Email.vue')
+    component: Email
   }
 ]
 

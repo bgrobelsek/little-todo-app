@@ -55,14 +55,22 @@
       onSubmit () {
         if (!this.form) return
           this.loading = true
-        setTimeout(() => (this.loading = false), 2000)
+        setTimeout(() => (this.loading = false), 1500)
+        console.log(this.username)
+        console.log(this.password)
+        this.letMeIn()
+        this.username = ''
+        this.password = ''
       },
       required (v) {
         return !!v || 'Field is required'
       },
       // new method for logging in 
       letMeIn () {
-        
+        if(this.username === 'test' && this.password === '1234')
+        {
+          this.$router.push('/');
+        }
       }
     },
   }
