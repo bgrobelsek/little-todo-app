@@ -15,9 +15,8 @@
 
     <v-list
       class="pt-0 mx-auto"
-      flat
+      
       width="70%"
-      round
     >
     <!-- WIDTH ^ nije dobar, moraš ga dotjerati da se ne aplicira kada si na mobitelu-->
       <div 

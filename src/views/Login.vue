@@ -56,8 +56,6 @@
         if (!this.form) return
           this.loading = true
         setTimeout(() => (this.loading = false), 1500)
-        console.log(this.username)
-        console.log(this.password)
         this.letMeIn()
         this.username = ''
         this.password = ''

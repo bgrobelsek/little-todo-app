@@ -8,14 +8,14 @@ import Email from '../views/Email.vue'
 Vue.use(VueRouter)
 const routes = [
   {
-    path: '/',
-    name: 'Todo',
-    component: Todo
-  },
-  {
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/',
+    name: 'Todo',
+    component: Todo
   },
   {
     path: '/about',

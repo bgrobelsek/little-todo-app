@@ -41,7 +41,6 @@
           </v-list-item-content>
         </v-list-item>
 
-
       </v-list>
     </v-navigation-drawer>
 
@@ -62,10 +61,19 @@
       <v-app-bar-nav-icon 
       @click="drawer = !drawer">
     </v-app-bar-nav-icon>
+
+    <!-- Added a search bar-->
+    <v-text-field
+      clearable
+      placeholder="Find a todo"
+      v-model="search"
+      single-line
+      hide-detail
+      class="ma-2"
+    > 
+    </v-text-field>
     
-    <v-app-bar-title></v-app-bar-title>
-    
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
       
       <!-- Links to media -->
       <!-- Linkedin -->
@@ -109,6 +117,7 @@ and the router for the three components/views.
   export default {
     data: () => ({ 
       drawer: false,
+      search: '',
       items: [
         { title: 'Todo', icon: 'mdi-calendar-check-outline', to: '/' },
         { title: 'About', icon: 'mdi-help-box', to: '/about' }, 
