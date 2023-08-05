@@ -4,6 +4,7 @@ import Todo from '../views/Todo.vue'
 import Login from '../views/Login.vue'
 import About from '../views/About.vue'
 import Email from '../views/Email.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 const routes = [
@@ -14,19 +15,24 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Todo',
-    component: Todo
+    name: 'home',
+    component: Home,
+    children: [
+      {
+        path: '/todo',
+        component: Todo
+      },
+      {
+        path: '/about',
+        component: About
+      },
+      {
+        path: '/email',
+        component: Email
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'About',
-    component: About
-  },
-  {
-    path: '/email',
-    name: 'Email',
-    component: Email
-  }
+  
 ]
 
 const router = new VueRouter({
