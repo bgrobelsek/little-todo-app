@@ -61,17 +61,6 @@
       <v-app-bar-nav-icon 
       @click="drawer = !drawer">
     </v-app-bar-nav-icon>
-
-    <!-- Added a search bar-->
-    <v-text-field
-      clearable
-      placeholder="Find a todo"
-      v-model="search"
-      single-line
-      hide-detail
-      class="ma-2"
-    > 
-    </v-text-field>
     
     <v-spacer></v-spacer>
       

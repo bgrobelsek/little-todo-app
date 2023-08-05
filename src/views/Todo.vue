@@ -3,7 +3,8 @@
     <!-- Add a Todo -->
     <v-text-field
       v-model="newTodoContent"
-      class="pa-3"
+      class="pa-3 ma-2 mx-auto"
+      rounded
       clearable
       outlined
       label="Enter a todo"
@@ -15,8 +16,6 @@
 
     <v-list
       class="pt-0 mx-auto"
-      
-      width="70%"
     >
     <!-- WIDTH ^ nije dobar, moraš ga dotjerati da se ne aplicira kada si na mobitelu-->
       <div 
@@ -26,13 +25,14 @@
         <v-list-item
           @click="toggleDone(todo.id)"
           :class="{ 'blue lighten-5': todo.done }"
-          class="pa-1 ma-2"
+          class="pa-1 ma-3"
           >
           <template v-slot:default>
             <v-list-item-action>
               <v-checkbox
                 :input-value="todo.done"
                 color="primary"
+                class="pl-2"
               ></v-checkbox>
             </v-list-item-action>
 
@@ -45,6 +45,7 @@
             
           <v-list-item-action>
             <v-btn 
+            class="pr-2"
             icon
             @click.stop="deleteTodo(todo.id)"
             >
@@ -161,6 +162,10 @@ const toggleDone = id => {
   text-align: center; 
 }
 
+.v-text-field {
+  width: 60%;
+}
+
 .v-footer a:hover {
   font-weight: bold;
 }
@@ -169,14 +174,22 @@ const toggleDone = id => {
   text-decoration: none;
 }
 
+.v-list {
+  width: 50%;
+}
+
 .v-list-item {
   border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
   .v-list {
-    width: "90%";
+    width: 90%;
+  }
+  .v-text-field {
+    width: 100%; 
   }
 }
 
