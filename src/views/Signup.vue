@@ -1,9 +1,14 @@
 <template>
+  <div class="signup">
     <div 
       class="d-flex align-center justify-center" 
       style="height: 100vh"
     >
-      <v-sheet width="400" class="mx-auto">
+      <v-sheet 
+        width="400" 
+        class="mx-auto"
+        color="transparent"
+        >
 
         <h1 class="login">Sign up</h1>
 
@@ -72,14 +77,33 @@
         </v-card>
       </v-dialog>
 
+      <v-dialog
+        v-model="error"
+        activator="parent"
+        width="auto"
+      >
+        <v-card>
+          <v-card-text class="pa-5">
+            Please enter a valid email and password.
+          </v-card-text>
+          <v-card-actions>
+            <v-btn 
+              color="primary" 
+              block 
+              @click="error = false" 
+              >
+              I understand</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </div>
+  </div>
   </template>
   
   <script>
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
-
-// password needs more validation
 
     export default {
       data: () => ({
@@ -87,7 +111,8 @@ import "firebase/compat/auth";
         password: '',
         form: false,
         loading: false,
-        dialog: false
+        dialog: false,
+        error: false
       }), 
   
       methods: {
@@ -99,13 +124,13 @@ import "firebase/compat/auth";
             createUserWithEmailAndPassword(this.email, this.password).
             then(
                 (user) => {
-                    console.log(user)
+                    // console.log(user)
+                    this.dialog = true
                 },
                 (error) => {
-                    alert(error)
+                    this.error = true
                 }                
             )
-            this.dialog = true
         }
       },
     }
@@ -117,5 +142,9 @@ import "firebase/compat/auth";
   font-family: "Roboto", sans-serif, !important;
   margin-bottom: 20px;
   font-weight: 150;
+}
+
+.signup {
+  background: whitesmoke;
 }
 </style>

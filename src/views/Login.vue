@@ -1,13 +1,21 @@
 <template>
+  <div class="login-screen">
+  
   <div 
     class="d-flex align-center justify-center" 
     style="height: 100vh"
   >
-    <v-sheet width="400" class="mx-auto">
+    <v-sheet 
+      width="400" 
+      class="mx-auto"
+      color="transparent"
+      >
       
       <h1 class="login">Login</h1>
       
-      <v-card class="mx-auto px-6 py-8" max-width="344">
+      <v-card
+        class="mx-auto px-6 py-8" 
+        max-width="344">
         <v-form
           v-model="form"
           @submit.prevent="login"
@@ -71,6 +79,7 @@
       </v-dialog>
 
   </div>
+</div>
 </template>
 
 <script>
@@ -97,12 +106,12 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
               (user) => {
-                  console.log(user)
+                  // console.log(user)
                   this.$router.push('./todo');
               },
               (error) => {
                 console.log(error)
-                  this.dialog = true
+                this.dialog = true
               }
           )
     },
@@ -116,6 +125,10 @@ export default {
   font-family: "Roboto", sans-serif, !important;
   margin-bottom: 20px;
   font-weight: 150;
+}
+
+.login-screen {
+  background: whitesmoke;
 }
 
 </style>
