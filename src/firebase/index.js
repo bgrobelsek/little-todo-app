@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "AIzaSyDMHHHlJsr1gvhH2Kj8SXNifodHwKwpai8",
   authDomain: process.env.AUTH_DOMAIN,
   // projectId cannot be an .env
   projectId: "vvg-little-todo-a0db0",
@@ -11,7 +12,7 @@ const firebaseConfig = {
   appId: process.env.APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
+app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export {
