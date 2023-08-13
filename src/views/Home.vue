@@ -103,7 +103,7 @@ and the router for the three components/views.
       drawer: false,
       search: '',
       items: [
-        { title: 'Todo', icon: 'mdi-calendar-check-outline', to: '/todo' },
+        { title: 'Todos', icon: 'mdi-calendar-check-outline', to: '/todo' },
         { title: 'About', icon: 'mdi-help-box', to: '/about' }, 
         { title: 'Contact', icon: 'mdi-email', to: '/email'},
         { title: 'Log Out', icon: 'mdi-logout', to: '/login'}

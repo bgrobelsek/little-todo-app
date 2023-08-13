@@ -9,7 +9,6 @@
       outlined
       label="Enter a todo"
       append-icon="mdi-plus-circle"
-      hide-details="auto"
       @click:append="addTodo"
       @keyup.enter="addTodo"
     ></v-text-field>
@@ -17,7 +16,6 @@
     <v-list
       class="pt-0 mx-auto"
     >
-    <!-- WIDTH ^ nije dobar, moraš ga dotjerati da se ne aplicira kada si na mobitelu-->
       <div 
         v-for="todo in todos"
         :key="todo.id"
@@ -100,28 +98,35 @@ import {
   addDoc,
   deleteDoc,
   doc,
-  updateDoc
+  updateDoc,
+  orderBy,
+  Timestamp,
+  query,
+  serverTimestamp
 } from "firebase/firestore"
 import { db } from '@/firebase'
 
+ 
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
 const newTodoContent = ref('')
 
 const rules = [
-  value => !!value || 'Required.',
   value => (value.length >= 3) || 'Min 3 characters'
 ]
 
+// todos sorted by time descending
+const q = query(todosCollectionRef, orderBy('createdAt', 'desc'))
 
 onMounted(() => {
-  onSnapshot(collection(db, "todos"), (QuerySnapshot) => {
+  onSnapshot(q, collection(db, "todos"), (QuerySnapshot) => {
     const fbTodos = []
     QuerySnapshot.forEach((doc) => {
       const todo = {
         id: doc.id,
         content: doc.data().content,
-        done: doc.data().done
+        done: doc.data().done,
+        createdAt: doc.createdAt
       }
       fbTodos.push(todo)
     })
@@ -135,11 +140,12 @@ const addTodo = async () =>  {
   if (newTodoContent.value.length > 3) {
     await addDoc(todosCollectionRef, {
       content: newTodoContent.value,
-      done: false
+      done: false,
+      createdAt: serverTimestamp()
     })
     newTodoContent.value = ''
   } else {
-    alert('NE MOŽE BRE')
+    alert = true
   }  
 }
 
