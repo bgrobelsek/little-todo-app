@@ -13,6 +13,17 @@
       @keyup.enter="addTodo"
     ></v-text-field>
 
+    <div class="searchAndFilter">
+      <!-- Search todo -->
+      <v-text-field 
+        label="Find a todo"
+        append-icon="mdi-magnify"
+        clearable
+        class="mx-auto w-10" >
+      </v-text-field>     
+
+</div>
+
     <v-list
       class="pt-0 mx-auto"
     >
@@ -110,7 +121,6 @@ import { db } from '@/firebase'
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
 const newTodoContent = ref('')
-
 const rules = [
   value => (value.length >= 3) || 'Min 3 characters'
 ]
@@ -133,7 +143,6 @@ onMounted(() => {
     todos.value = fbTodos
   }) 
 })
-
 
 // add Todo
 const addTodo = async () =>  {
@@ -161,17 +170,21 @@ const toggleDone = id => {
     done: !todos.value[index].done
   })
 }
+
 </script>
 
 <style scoped>
 .noTodos {
   text-align: center; 
 }
-
 .v-text-field {
   width: 60%;
 }
-
+.searchAndFilter{
+ display: flex;
+ width: 50%;
+ margin: auto;
+}
 .v-footer a:hover {
   font-weight: bold;
 }
@@ -182,6 +195,14 @@ const toggleDone = id => {
 
 .v-list {
   width: 50%;
+}
+
+.v-select {
+  width: 40px;
+}
+
+.v-select-item--active {
+  backdrop-filter: white !important;
 }
 
 .v-list-item {
