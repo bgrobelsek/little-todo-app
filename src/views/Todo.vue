@@ -115,7 +115,7 @@ const rules = [
   value => (value.length >= 3) || 'Min 3 characters'
 ]
 
-// todos sorted by time descending
+// todos sorted by time-created descending
 const q = query(todosCollectionRef, orderBy('createdAt', 'desc'))
 
 onMounted(() => {

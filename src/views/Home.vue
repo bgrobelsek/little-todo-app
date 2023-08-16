@@ -11,7 +11,7 @@
             Little todo app
             <v-icon
               color="black"
-            >mdi-book-check-outline</v-icon>
+            >mdi-check-all</v-icon>
           </v-list-item-title>
           <v-list-item-subtitle> 
             Get more done!
