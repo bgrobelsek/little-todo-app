@@ -1,7 +1,6 @@
 <template>
 <div>
   <div class="todos">
-
       <div class="addTodo">
       <!-- Add a Todo -->
       <v-text-field
@@ -18,38 +17,35 @@
     </div>
 
     <div class="filterTodo">
-    <v-container>
       <v-btn 
         @click="openDialog"
         class="mb-8 transparent"
         >
         <v-icon>mdi-filter-check-outline</v-icon>
         </v-btn>
+    </div>
+
         <v-dialog 
           v-model="dialogVisible" 
           @click="closeDialog"
           >
-        <v-card
-        class="vDia">
-          <!-- filter -->
-          
-            <v-card>
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-              ></v-text-field>
+          <v-card>
+          <!-- filter -->  
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search todos"
+              class="search-input"
+              clearable
+              hide-details
+            ></v-text-field>
 
-                <v-data-table
-                  :headers="headers"
-                  :items="todos"
-                  :search="search"
-                  density="compact"
-                ></v-data-table>
-            </v-card>
-
+            <v-data-table
+              :headers="headers"
+              :items="todos"
+              :search="search"
+              class="mx-auto"
+            ></v-data-table>
             <v-card-actions>
               <v-btn 
                 @click="closeDialog"
@@ -58,8 +54,6 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-container>
-    </div>
 
   </div>
 
@@ -181,7 +175,7 @@ const headers = ref([
     title: 'Todo',
     align: 'start',
     sortable: false,
-    key: doc.id,
+    key: doc.id
     },
     { 
       text:'Todo Content', 
@@ -244,11 +238,30 @@ const toggleDone = id => {
 </script>
 
 <style scoped>
+.v-data-table {
+  width: 500px
+}
+
+.t1 {
+  background: transparent;
+}
+
+.search-input {
+  width: 500px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
 .todos {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.v-dialog {
+    width: unset;
+}
+
 
 .addTodo {
   width: 60%;
@@ -269,10 +282,6 @@ const toggleDone = id => {
 
 .v-footer a {
   text-decoration: none;
-}
-
-.vDia {
-  width: 50%;
 }
 
 .v-list {
