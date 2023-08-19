@@ -7,9 +7,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "algoliasearch": "^4.19.1",
     "core-js": "^3.8.3",
     "firebase": "^9.23.0",
+    "instantsearch.css": "^8.0.0",
     "vue": "^2.6.14",
+    "vue-instantsearch": "^4.10.9",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",
     "vuex": "^3.6.2"

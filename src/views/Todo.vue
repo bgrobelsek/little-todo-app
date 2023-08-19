@@ -1,28 +1,67 @@
 <template>
-  <div class="home">
-    <!-- Add a Todo -->
-    <v-text-field
-      v-model="newTodoContent"
-      class="pa-3 ma-2 mx-auto"
-      rounded
-      clearable
-      outlined
-      label="Enter a todo"
-      append-icon="mdi-plus-circle"
-      @click:append="addTodo"
-      @keyup.enter="addTodo"
-    ></v-text-field>
+<div>
+  <div class="todos">
 
-    <div class="searchAndFilter">
-      <!-- Search todo -->
-      <v-text-field 
-        label="Find a todo"
-        append-icon="mdi-magnify"
+      <div class="addTodo">
+      <!-- Add a Todo -->
+      <v-text-field
+        v-model="newTodoContent"
+        class="pa-3 ma-2 mx-auto"
+        rounded
         clearable
-        class="mx-auto w-10" >
-      </v-text-field>     
+        outlined
+        label="Enter a todo"
+        append-icon="mdi-plus-circle"
+        @click:append="addTodo"
+        @keyup.enter="addTodo"
+      ></v-text-field>
+    </div>
 
-</div>
+    <div class="filterTodo">
+    <v-container>
+      <v-btn 
+        @click="openDialog"
+        class="mb-8 transparent"
+        >
+        <v-icon>mdi-filter-check-outline</v-icon>
+        </v-btn>
+        <v-dialog 
+          v-model="dialogVisible" 
+          @click="closeDialog"
+          >
+        <v-card
+        class="vDia">
+          <!-- filter -->
+          
+            <v-card>
+              <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+
+                <v-data-table
+                  :headers="headers"
+                  :items="todos"
+                  :search="search"
+                  density="compact"
+                ></v-data-table>
+            </v-card>
+
+            <v-card-actions>
+              <v-btn 
+                @click="closeDialog"
+                class="mx-auto"
+                >Close Filter</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-container>
+    </div>
+
+  </div>
 
     <v-list
       class="pt-0 mx-auto"
@@ -117,13 +156,44 @@ import {
 } from "firebase/firestore"
 import { db } from '@/firebase'
 
- 
+
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
 const newTodoContent = ref('')
 const rules = [
   value => (value.length >= 3) || 'Min 3 characters'
 ]
+
+const dialogVisible = ref(false);
+
+const openDialog = () => {
+  dialogVisible.value = true;
+};
+
+const closeDialog = () => {
+  dialogVisible.value = false;
+};
+
+// search parameters 
+const search = ref('')
+const headers = ref([
+  {
+    title: 'Todo',
+    align: 'start',
+    sortable: false,
+    key: doc.id,
+    },
+    { 
+      text:'Todo Content', 
+      value: 'content'
+    },
+    {
+      text: 'Done',
+      value: 'done'
+    }
+  ])
+
+
 
 // todos sorted by time-created descending
 const q = query(todosCollectionRef, orderBy('createdAt', 'desc'))
@@ -174,12 +244,20 @@ const toggleDone = id => {
 </script>
 
 <style scoped>
+.todos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addTodo {
+  width: 60%;
+}
+
 .noTodos {
   text-align: center; 
 }
-.v-text-field {
-  width: 60%;
-}
+
 .searchAndFilter{
  display: flex;
  width: 50%;
@@ -191,6 +269,10 @@ const toggleDone = id => {
 
 .v-footer a {
   text-decoration: none;
+}
+
+.vDia {
+  width: 50%;
 }
 
 .v-list {
