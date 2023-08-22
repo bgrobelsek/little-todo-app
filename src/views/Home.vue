@@ -93,22 +93,17 @@
 </template>
 
 <script>
-/* 
-This script holds the drawer boolean value  
-and the router for the three components/views.
-*/
-
-  export default {
-    data: () => ({ 
-      drawer: false,
-      search: '',
-      items: [
-        { title: 'Todos', icon: 'mdi-calendar-check-outline', to: '/todo' },
-        { title: 'About', icon: 'mdi-help-box', to: '/about' }, 
-        { title: 'Contact', icon: 'mdi-email', to: '/email'},
-        { title: 'Log Out', icon: 'mdi-logout', to: '/login'}
-      ],
-    })
-  }
+export default {
+  data: () => ({ 
+    drawer: false,
+    search: '',
+    items: [
+      { title: 'Todos', icon: 'mdi-calendar-check-outline', to: '/todo' },
+      { title: 'About', icon: 'mdi-help-box', to: '/about' }, 
+      { title: 'Contact', icon: 'mdi-email', to: '/email'},
+      { title: 'Log Out', icon: 'mdi-logout', to: '/login'}
+    ],
+  })
+}
 
 </script>

@@ -99,7 +99,7 @@
 
     </div>
   </div>
-  </template>
+</template>
   
   <script>
 import firebase from 'firebase/compat/app';
