@@ -124,11 +124,13 @@ export default {
   text-align: center;
   font-family: "Roboto", sans-serif, !important;
   margin-bottom: 20px;
-  font-weight: 150;
+  font-weight: 200;
+  color: white;
 }
 
 .login-screen {
-  background: whitesmoke;
+  background: url('../assets/vvg.png');
+  background-size: cover;
 }
 
 </style>

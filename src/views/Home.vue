@@ -48,7 +48,6 @@
       app
       color="#fcb69f"
       dark
-      src="../assets/vvg.png"
       prominent
     >
       <template v-slot:img="{ props }">
@@ -63,29 +62,29 @@
     
     <v-spacer></v-spacer>
       
-      <!-- Links to media -->
-      <!-- Linkedin -->
-      <v-btn icon
-      href="https://www.linkedin.com/in/bruno-grobel%C5%A1ek-70b67b17b/"
-      target="_blank"
-      >
+    <!-- Links to media -->
+    <!-- Linkedin -->
+    <v-btn icon
+        href="https://www.linkedin.com/in/bruno-grobel%C5%A1ek-70b67b17b/"
+        target="_blank"
+        >
       <v-icon>mdi-linkedin</v-icon>
     </v-btn>
-    <!-- Github -->
-    <v-btn icon
-    href="https://github.com/bgrobelsek"
-    target="_blank"
-    >
+      <!-- Github -->
+      <v-btn icon
+      href="https://github.com/bgrobelsek"
+      target="_blank"
+      >
     <v-icon>mdi-github</v-icon>
-  </v-btn>
-  <!-- Instagram -->
-  <v-btn icon
-  href="https://www.instagram.com/bruno.grobelsek/"
-  target="_blank"
-  >
-  <v-icon>mdi-instagram</v-icon>
-    </v-btn>
-    </v-app-bar>
+      </v-btn>
+      <!-- Instagram -->
+      <v-btn icon
+      href="https://www.instagram.com/bruno.grobelsek/"
+      target="_blank"
+      >
+    <v-icon>mdi-instagram</v-icon>
+      </v-btn>
+  </v-app-bar>
 
     <router-view></router-view>
 
@@ -107,3 +106,12 @@ export default {
 }
 
 </script>
+
+<style>
+
+.v-app-bar {  
+  background: url("../assets/vvg.png");
+  background-size: cover;
+}
+
+</style>

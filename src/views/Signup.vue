@@ -141,10 +141,11 @@ import "firebase/compat/auth";
   text-align: center;
   font-family: "Roboto", sans-serif, !important;
   margin-bottom: 20px;
-  font-weight: 150;
+  font-weight: 300;
 }
 
 .signup {
-  background: whitesmoke;
+  background: url('../assets/signup.png');
+  background-size: cover;
 }
 </style>
