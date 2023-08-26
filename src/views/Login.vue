@@ -98,7 +98,7 @@ export default {
 
   methods: {
     required (v) {
-          return !!v || 'Field is required'
+          return !!v || 'Field is required.'
         },
     login () {
       firebase

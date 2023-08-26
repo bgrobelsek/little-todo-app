@@ -24,37 +24,7 @@
         <v-icon>mdi-filter-check-outline</v-icon>
         </v-btn>
     </div>
-
-        <v-dialog 
-          v-model="dialogVisible" 
-          @click="closeDialog"
-          >
-          <v-card>
-          <!-- filter -->  
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="Search todos"
-              class="search-input"
-              clearable
-              hide-details
-            ></v-text-field>
-
-            <v-data-table
-              :headers="headers"
-              :items="todos"
-              :search="search"
-              class="mx-auto"
-            ></v-data-table>
-            <v-card-actions>
-              <v-btn 
-                @click="closeDialog"
-                class="mx-auto"
-                >Close Filter</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-
+        
   </div>
 
     <v-list
@@ -130,6 +100,38 @@
   </v-col>
 </v-footer>
 
+  <v-dialog 
+    v-model="dialogVisible" 
+    @click="closeDialog"
+    width="auto"
+    >
+    <v-card
+    class="my-data">
+    <!-- filter -->  
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search todos"
+        class="search-input"
+        clearable
+        hide-details
+      ></v-text-field>
+
+      <v-data-table
+        :headers="headers"
+        :items="todos"
+        :search="search"
+        class="my-data"
+      ></v-data-table>
+      <v-card-actions>
+        <v-btn 
+          @click="closeDialog"
+          class="mx-auto"
+          >Close Filter</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
 </div>
 </template>
 
@@ -150,7 +152,7 @@ import {
 } from "firebase/firestore"
 import { db } from '@/firebase'
 
-
+const overlay = ref(false)
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
 const newTodoContent = ref('')
@@ -238,12 +240,10 @@ const toggleDone = id => {
 </script>
 
 <style scoped>
-.v-data-table {
-  width: 500px
-}
 
-.t1 {
-  background: transparent;
+.my-data {
+  width: 600px;
+  margin: auto;
 }
 
 .search-input {
