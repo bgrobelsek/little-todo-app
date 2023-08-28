@@ -34,12 +34,18 @@
               type="password"
               label="Password"
             ></v-text-field>
+        
+            <small
+              class="mb-2"
+            >Password has to have at least 6 characters,  
+            one uppercase letter and a number. 
+            </small>
   
             <v-btn
               :disabled="!form"
               :loading="loading"
               block
-              class="mt-1"
+              class="mt-3"
               color="green"
               size="large"
               type="submit"
@@ -55,6 +61,7 @@
           </div>
   
         </v-card>
+
       </v-sheet>
       
       <v-dialog
@@ -64,7 +71,7 @@
       >
         <v-card>
           <v-card-text class="pa-5">
-            You have succesfully created an account! 
+            You have successfully created an account! 
           </v-card-text>
           <v-card-actions>
             <v-btn 

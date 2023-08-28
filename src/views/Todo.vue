@@ -127,6 +127,7 @@
         <v-btn 
           @click="closeDialog"
           class="mx-auto"
+          color="primary"
           >Close Filter</v-btn>
       </v-card-actions>
     </v-card>
@@ -152,7 +153,6 @@ import {
 } from "firebase/firestore"
 import { db } from '@/firebase'
 
-const overlay = ref(false)
 const todos = ref([])
 const todosCollectionRef = collection(db, 'todos')
 const newTodoContent = ref('')
@@ -250,6 +250,7 @@ const toggleDone = id => {
   width: 500px;
   margin: auto;
   margin-bottom: 5px;
+  margin-top: 2px;
 }
 
 .todos {
