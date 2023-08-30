@@ -192,7 +192,7 @@ const headers = ref([
 
 
 // todos sorted by time-created descending
-const q = query(todosCollectionRef, orderBy('createdAt', 'desc'))
+const q = query(todosCollectionRef, orderBy('createdAt', 'asc'))
 
 onMounted(() => {
   onSnapshot(q, collection(db, "todos"), (QuerySnapshot) => {
