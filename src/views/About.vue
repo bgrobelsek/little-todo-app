@@ -13,19 +13,18 @@
       and Firebase.
     </p>
     <p>
-      Todos are stored in Google's firebase database and are
+      Todos are stored in Google Firestore database and are
       managed in realtime using query snapshots.
       You can add todos, "cross" them out when they are done
-      and delete them. On the left side there is a navigation 
-      drawer with a little menu so you can navigate around. The app is also
-      suited for desktop / tablet / mobile phone use.
-    </p>
-    <p>
+      and delete them. Next to the todo input field is a filter
+      for the mentioned todos. On the left side of the app 
+      there is a navigation drawer with navigation links. 
       Please note that this app is still in development
       so some things need more work and there are areas
       that could be improved with time or but the basic
       functionallity is there.
     </p>
+    <p> The app is also suited for desktop / tablet / mobile phone use.</p>
     <p>
       Links to my Github, Instagram and LinkedIn accounts are 
       in the top right corner.
